@@ -43,6 +43,11 @@ function expect
     end
   end
 
+  if set -q $expected
+    spec.log --fail red \n"Expect called without an expectation argument."
+    return 1
+  end
+
   # Test conditions and save success/fail $status to return later.
   switch $condition
     case --to-be-false
